@@ -4,6 +4,6 @@ services:
     image: ubuntu/squid
     ports:
       - "3128:3128"
-    volumes:
-      - ./squid.conf:/etc/squid/squid.conf
+    # volumes:
+    #   - ./squid.conf:/etc/squid/squid.conf
     restart: always
