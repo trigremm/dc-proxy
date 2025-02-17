@@ -13,3 +13,8 @@ stop:
 
 down:
 	docker compose down
+
+r: stop up
+
+l: logs 
+

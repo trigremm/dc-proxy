@@ -2,3 +2,5 @@
 .vscode
 
 .docker
+
+local.mk

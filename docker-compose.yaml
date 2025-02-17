@@ -8,11 +8,11 @@ services:
       # Squid configuration file (read-only)
       - ./squid.conf:/etc/squid/squid.conf:ro
       # Local directories for cache and logs
-      - ./.docker/squid/cache:/var/spool/squid
-      - ./.docker/squid/logs:/var/log/squid
+      # - ./.docker/squid/cache:/var/spool/squid
+      # - ./.docker/squid/logs:/var/log/squid
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3128"]
-      interval: 1m
+      interval: 10s
       timeout: 10s
-      retries: 3
+      retries: 6
