@@ -1,9 +1,18 @@
-version: "3"
 services:
-  proxy:
-    image: ubuntu/squid
+  squid:
+    image: ubuntu/squid:latest
+    container_name: squid-proxy
     ports:
       - "3128:3128"
-    # volumes:
-    #   - ./squid.conf:/etc/squid/squid.conf
+    volumes:
+      # Squid configuration file (read-only)
+      - ./squid.conf:/etc/squid/squid.conf:ro
+      # Local directories for cache and logs
+      - ./.docker/squid/cache:/var/spool/squid
+      - ./.docker/squid/logs:/var/log/squid
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3128"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
